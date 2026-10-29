@@ -1,169 +1,269 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Lattice Assurance Bureau explores secure software engineering, data protection, and post-quantum cryptography research.">
-  <meta name="theme-color" content="#081426">
-  <title>Lattice Assurance Bureau | Security for the Quantum Era</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lattice Assurance Bureau | Security for the Quantum Era</title>
+<meta name="description" content="Lattice Assurance Bureau builds signed document receipts and verification for schools and institutions, with research in post-quantum cryptography. Institutions can apply for access online.">
+<meta name="theme-color" content="#081426">
+<style>
+:root{
+  --bg:#081426; --bg2:#0d1f38; --card:#10253f; --line:#1f3a5c;
+  --text:#e8eef7; --muted:#9db0c8; --accent:#4fd1c5; --accent2:#f2c14e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(8,20,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font-weight:700;letter-spacing:.08em;font-size:.9rem}
+.logo b{color:var(--accent)}
+nav{display:flex;gap:18px;align-items:center;font-size:.92rem;color:var(--muted);flex-wrap:wrap}
+nav a:hover{color:var(--text)}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;font-size:.95rem;border:1px solid var(--accent);transition:.2s}
+.btn.primary{background:var(--accent);color:#04201d}
+.btn.primary:hover{background:#7be6dc}
+.btn.ghost{color:var(--accent)}
+.btn.ghost:hover{background:rgba(79,209,197,.1)}
+nav .btn{padding:8px 16px;font-size:.85rem}
+.hero{padding:90px 0 70px;background:radial-gradient(900px 400px at 80% -10%,rgba(79,209,197,.14),transparent),var(--bg)}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;color:var(--accent);font-weight:600;margin-bottom:16px}
+h1{font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.1;max-width:800px}
+h1 em{color:var(--accent);font-style:normal}
+.hero p.lead{margin:22px 0 30px;max-width:640px;color:var(--muted);font-size:1.1rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.tag{margin-top:34px;color:var(--muted);font-size:.85rem}
+section{padding:70px 0}
+section.alt{background:var(--bg2)}
+.kicker{font-size:.75rem;letter-spacing:.16em;color:var(--accent2);font-weight:600;margin-bottom:10px}
+h2{font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.2;margin-bottom:14px;max-width:720px}
+.sub{color:var(--muted);max-width:660px;margin-bottom:34px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.card h3{font-size:1.05rem;margin:8px 0}
+.card p{color:var(--muted);font-size:.95rem}
+.ico{font-size:1.4rem;color:var(--accent)}
+.small{font-size:.7rem;letter-spacing:.12em;color:var(--accent2);margin-top:14px;font-weight:600}
+.steps{counter-reset:s;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px 24px}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#04201d;font-weight:700;margin-bottom:12px}
+.step h3{margin-bottom:6px;font-size:1.05rem}
+.step p{color:var(--muted);font-size:.95rem}
+.apply{background:linear-gradient(135deg,#0f3050,#0a2038);border:1px solid var(--accent);border-radius:22px;padding:40px 28px;text-align:center}
+.apply h2{margin-inline:auto}
+.apply p{color:var(--muted);max-width:620px;margin:0 auto 24px}
+.need{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:26px}
+.need span{background:rgba(79,209,197,.1);border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:.85rem}
+.note{font-size:.82rem;color:var(--muted);margin-top:16px}
+.vault{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:center}
+.vault ul{list-style:none;margin:18px 0}
+.vault li{padding:6px 0;color:var(--muted)}
+.vault li::before{content:"✓ ";color:var(--accent);font-weight:700}
+.panel{background:#06101f;border:1px solid var(--line);border-radius:16px;padding:22px;font-family:ui-monospace,Consolas,monospace;font-size:.85rem;color:var(--muted)}
+.panel b{color:var(--accent)}
+.disclose{border-left:3px solid var(--accent2);background:rgba(242,193,78,.07);padding:14px 18px;border-radius:0 10px 10px 0;font-size:.9rem;color:var(--muted)}
+.disclose strong{color:var(--accent2)}
+.people{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.person{display:flex;gap:16px;align-items:center}
+.av{width:56px;height:56px;border-radius:50%;background:var(--accent);color:#04201d;display:grid;place-items:center;font-weight:700;flex:none}
+.role{font-size:.7rem;letter-spacing:.12em;color:var(--accent2)}
+.person h3{font-size:1.05rem}
+.person p{color:var(--muted);font-size:.9rem}
+.contact p{color:var(--muted);margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:12px}
+.faq summary{cursor:pointer;font-weight:600;list-style:none}
+.faq summary::after{content:"+";float:right;color:var(--accent)}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--muted);margin-top:10px;font-size:.95rem}
+@media(max-width:640px){nav a.hide{display:none}.hero{padding:60px 0 50px}section{padding:52px 0}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Lattice Assurance Bureau home">
-      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-      <span class="brand-name">LATTICE <b>ASSURANCE BUREAU</b></span>
-    </a>
-    <nav aria-label="Main navigation">
-      <a href="#services">Services</a>
-      <a href="#lab-vault">LAB Vault</a>
-      <a href="#leadership">Leadership</a>
-      <a class="nav-cta" href="#contact">Contact us <span aria-hidden="true">↗</span></a>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home">LATTICE <b>ASSURANCE BUREAU</b></a>
+    <nav>
+      <a class="hide" href="#services">Services</a>
+      <a class="hide" href="#sectors">Sectors</a>
+      <a class="hide" href="#lab-vault">LAB Vault</a>
+      <a class="hide" href="#institutions">Institutions</a>
+      <a class="hide" href="#contact">Contact</a>
+      <a class="btn primary" href="https://lattice-assurance-bureau.onrender.com/" target="_blank" rel="noopener">Apply now ↗</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="eyebrow"><span class="status-dot"></span> SECURITY-FOCUSED TECHNOLOGY & RESEARCH</div>
-        <h1>Security for today.<br><span>Preparedness for the</span><br><em>quantum era.</em></h1>
-        <p class="hero-copy">We explore practical approaches to secure software, data protection, and post-quantum cryptography—helping organizations prepare thoughtfully for a changing digital world.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a>
-          <a class="button button-ghost" href="#lab-vault">Explore LAB Vault <span aria-hidden="true">↓</span></a>
-        </div>
-        <div class="hero-note"><span class="line"></span> Independent thinking. Responsible engineering. A security-first mindset.</div>
-      </div>
-      <div class="hero-art" aria-label="Abstract geometric lattice illustration">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
-        <div class="core"><div class="core-inner"></div></div>
-        <div class="node node-a"></div><div class="node node-b"></div><div class="node node-c"></div>
-        <div class="art-label"><span class="tiny-square"></span> CRYPTOGRAPHIC RESILIENCE <b>01 / 04</b></div>
-      </div>
-      <div class="hero-footer"><span>NAIROBI, KENYA · WORKING TOWARD GLOBAL COLLABORATION</span><span>RESEARCH / ENGINEERING / SECURITY</span></div>
-    </section>
+<main id="home">
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SECURITY-FOCUSED TECHNOLOGY &amp; RESEARCH · NAIROBI, KENYA</div>
+    <h1>Proof that it's the <em>real thing.</em></h1>
+    <p class="lead">We help institutions sign documents and records so anyone can check they're genuine in seconds, with a simple QR scan. We're starting with schools and building for every field where authenticity matters: banks, art, fashion and more. Our research into post-quantum cryptography keeps that trust ready for the future.</p>
+    <div class="cta">
+      <a class="btn primary" href="#institutions">Apply as an institution</a>
+      <a class="btn ghost" href="#lab-vault">Explore LAB Vault ↓</a>
+    </div>
+    <p class="tag">Independent thinking. Responsible engineering. A security-first mindset.</p>
+  </div>
+</div>
 
-    <section class="intro section" id="about">
-      <div class="section-kicker">01 / OUR PURPOSE</div>
-      <div class="intro-content">
-        <h2>Build with care.<br><span>Prepare for what's next.</span></h2>
-        <div>
-          <p class="large-copy">Digital trust is built through careful design, transparent claims, and continuous testing.</p>
-          <p>Lattice Assurance Bureau is an emerging technology initiative focused on security-minded software engineering and research into modern cryptographic approaches. We are building our capabilities through practical prototypes, documentation, and testing.</p>
-          <a class="text-link" href="#services">Discover our focus areas <span>→</span></a>
-        </div>
-      </div>
-    </section>
+<section id="services">
+  <div class="wrap">
+    <div class="kicker">WHAT WE DO</div>
+    <h2>Security is not a feature. It's a way of building.</h2>
+    <p class="sub">Our focus areas grow alongside our engineering capability and evidence.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">⌘</div><h3>Secure Software Development</h3><p>Python-based tools and workflows built with attention to reliability, documentation and security principles.</p><div class="small">ENGINEERING</div></div>
+      <div class="card"><div class="ico">◈</div><h3>Document Integrity &amp; Verification</h3><p>Digitally signed receipts, batch signing and QR verification slips so certificates and records can be checked for authenticity.</p><div class="small">DATA SECURITY</div></div>
+      <div class="card"><div class="ico">⌬</div><h3>Post-Quantum Research</h3><p>Prototyping with cryptographic techniques intended to address risks from future quantum-capable computers.</p><div class="small">RESEARCH &amp; DEVELOPMENT</div></div>
+      <div class="card"><div class="ico">◎</div><h3>Security Readiness</h3><p>Framing security requirements, technical risks and improvement plans within agreed scope and current capability.</p><div class="small">PLANNING</div></div>
+    </div>
+  </div>
+</section>
 
-    <section class="services section" id="services">
-      <div class="section-kicker">02 / WHAT WE EXPLORE</div>
-      <div class="section-heading">
-        <h2>Security is not a feature.<br><span>It's a way of building.</span></h2>
-        <p>Our focus areas are designed to grow alongside our engineering capability and evidence.</p>
-      </div>
-      <div class="service-grid">
-        <article class="service-card">
-          <div class="card-top"><span class="card-number">01</span><span class="card-icon">⌘</span></div>
-          <h3>Secure Software Development</h3>
-          <p>Python-based tools and software workflows developed with attention to reliability, documentation, and security principles.</p>
-          <span class="card-tag">ENGINEERING</span>
-        </article>
-        <article class="service-card">
-          <div class="card-top"><span class="card-number">02</span><span class="card-icon">◈</span></div>
-          <h3>Data & File Protection</h3>
-          <p>Exploring protected file workflows, authenticated encryption, digital signatures, and careful key-handling practices.</p>
-          <span class="card-tag">DATA SECURITY</span>
-        </article>
-        <article class="service-card">
-          <div class="card-top"><span class="card-number">03</span><span class="card-icon">⌬</span></div>
-          <h3>Post-Quantum Research</h3>
-          <p>Learning and prototyping with cryptographic techniques intended to address risks from future quantum-capable computers.</p>
-          <span class="card-tag">RESEARCH & DEVELOPMENT</span>
-        </article>
-        <article class="service-card">
-          <div class="card-top"><span class="card-number">04</span><span class="card-icon">◎</span></div>
-          <h3>Security Readiness & Documentation</h3>
-          <p>Helping frame security requirements, technical risks, and improvement plans within agreed project scope and current capability.</p>
-          <span class="card-tag">PLANNING</span>
-        </article>
-      </div>
-    </section>
+<section id="sectors" class="alt">
+  <div class="wrap">
+    <div class="kicker">WHO IT'S FOR</div>
+    <h2>Anywhere being genuine matters.</h2>
+    <p class="sub">Fake certificates, forged letters and counterfeit goods cost trust and money. If your name stands behind a document or an item, we help you prove it.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🎓</div><h3>Schools &amp; Colleges</h3><p>Certificates, transcripts, licences and admission letters that employers and other schools can verify instantly.</p><div class="small">CURRENT FOCUS</div></div>
+      <div class="card"><div class="ico">🏦</div><h3>Banks &amp; Finance</h3><p>Bank letters, statements, loan and guarantee documents that third parties can confirm came from you.</p><div class="small">NEXT SECTOR</div></div>
+      <div class="card"><div class="ico">🎨</div><h3>Arts &amp; Galleries</h3><p>Certificates of authenticity for artworks and limited editions, with a scannable record of who issued them.</p><div class="small">NEXT SECTOR</div></div>
+      <div class="card"><div class="ico">👗</div><h3>Fashion &amp; Luxury</h3><p>Authenticity tags for products, so buyers can check a piece is the real brand and not a copy.</p><div class="small">NEXT SECTOR</div></div>
+      <div class="card"><div class="ico">⚕</div><h3>Health &amp; Laboratories</h3><p>Test results, professional licences and medical letters that can't be quietly altered.</p><div class="small">FUTURE</div></div>
+      <div class="card"><div class="ico">🏛</div><h3>Licensing &amp; Government</h3><p>Permits, licences and official letters with a public way to confirm they're real.</p><div class="small">FUTURE</div></div>
+      <div class="card"><div class="ico">⚖</div><h3>Legal &amp; Property</h3><p>Contracts, titles and affidavits with a signed record showing they haven't been changed.</p><div class="small">FUTURE</div></div>
+      <div class="card"><div class="ico">🎟</div><h3>Events &amp; Tickets</h3><p>Verifiable passes and invitations that make forgeries easy to spot at the door.</p><div class="small">FUTURE</div></div>
+    </div>
+    <p class="note" style="margin-top:22px">Don't see your field? If you issue something people need to trust, <a href="#contact" style="color:var(--accent)">talk to us</a>.</p>
+  </div>
+</section>
 
-    <section class="vault section" id="lab-vault">
-      <div class="vault-visual">
-        <div class="vault-grid"></div>
-        <div class="vault-window">
-          <div class="window-bar"><span></span><span></span><span></span><b>LAB_VAULT / PROTOTYPE</b></div>
-          <div class="window-body">
-            <div class="file-icon">▤</div>
-            <div class="file-name">confidential-file.dat</div>
-            <div class="file-meta">ENCRYPTION WORKFLOW · DEMONSTRATION</div>
-            <div class="progress-track"><span></span></div>
-            <div class="window-status"><span>●</span> Prototype concept — testing in progress</div>
-          </div>
-        </div>
-        <div class="vault-caption">RESEARCH IN PROGRESS <span>LAB / 001</span></div>
-      </div>
-      <div class="vault-copy">
-        <div class="section-kicker">03 / FLAGSHIP DEVELOPMENT</div>
-        <div class="pill"><span class="status-dot"></span> PROTOTYPE STAGE</div>
-        <h2>Introducing<br><span>LAB Vault.</span></h2>
-        <p class="large-copy">A file-security prototype exploring hybrid key establishment, authenticated encryption, and digital signatures.</p>
-        <p>LAB Vault is being developed as a practical learning and research project. We are testing its behaviour and reviewing its implementation as we work toward a clearer understanding of its security properties.</p>
-        <ul class="feature-list">
-          <li><span>✓</span> Authenticated file-encryption workflow</li>
-          <li><span>✓</span> Exploration of hybrid key establishment</li>
-          <li><span>✓</span> Digital-signature verification concepts</li>
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">HOW IT WORKS</div>
+    <h2>Sign once. Verify anywhere.</h2>
+    <p class="sub">No special app is needed to check a document. Anyone with a phone can do it.</p>
+    <div class="steps">
+      <div class="step"><h3>You issue</h3><p>Your institution signs a document, a record or a whole batch at once.</p></div>
+      <div class="step"><h3>You attach a QR slip</h3><p>Each item gets a QR verification slip carrying your institution's name, printed or digital.</p></div>
+      <div class="step"><h3>Anyone verifies</h3><p>A buyer, employer or bank scans the QR and sees whether the record is authentic and unchanged.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="lab-vault" class="alt">
+  <div class="wrap">
+    <div class="vault">
+      <div>
+        <div class="kicker">FLAGSHIP · EARLY PILOT</div>
+        <h2>Introducing LAB Vault.</h2>
+        <p class="sub" style="margin-bottom:0">A document-security service for institutions: sign a document or a whole batch, hand out a QR verification slip, and let anyone confirm it is genuine.</p>
+        <ul>
+          <li>Signed document receipts</li>
+          <li>Merkle batch signing for many documents at once</li>
+          <li>QR verification slips and a public verify page</li>
+          <li>Hybrid classical and post-quantum signatures under research</li>
         </ul>
-        <div class="notice"><b>Responsible disclosure</b><p>LAB Vault is a prototype and has not been independently security-audited. It is not represented as certified or production-ready. Do not use it to protect real customer or sensitive data at this stage.</p></div>
+        <div class="disclose"><strong>Responsible disclosure.</strong> LAB Vault is in an early pilot and has not been independently security-audited. We do not claim it is certified. Institutions are onboarded in a controlled way.</div>
       </div>
-    </section>
-
-    <section class="principles section">
-      <div class="section-kicker">04 / OUR PRINCIPLES</div>
-      <div class="principle-grid">
-        <div><span class="principle-no">01</span><h3>Evidence over hype</h3><p>We aim to make claims that match what has actually been built and tested.</p></div>
-        <div><span class="principle-no">02</span><h3>Security by design</h3><p>We consider security throughout design, implementation, and review—not as an afterthought.</p></div>
-        <div><span class="principle-no">03</span><h3>Learning in the open</h3><p>We value documentation, careful testing, feedback, and independent review.</p></div>
+      <div class="panel">
+        <b>LAB_VAULT / VERIFY</b><br><br>
+        ▤ certificate-0042.pdf<br>
+        signature .... <b>valid</b><br>
+        issuer ........ approved institution<br>
+        batch root .... matched<br>
+        status ........ <b>● authentic</b><br><br>
+        <span>illustrative example</span>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="leadership section" id="leadership">
-      <div class="section-kicker">05 / LEADERSHIP</div>
-      <div class="leadership-layout">
-        <div><h2>Built on ambition.<br><span>Grounded in responsibility.</span></h2><p>We are developing the foundations for a security-focused technology business, with an emphasis on learning, collaboration, and responsible progress.</p></div>
-        <div class="leaders">
-          <article class="leader"><div class="leader-avatar">LC</div><div><span class="leader-role">CHIEF EXECUTIVE OFFICER</span><h3>Limo Chebon</h3><p>Company vision, strategic direction, and product development priorities.</p></div></article>
-          <article class="leader"><div class="leader-avatar">JK</div><div><span class="leader-role">DIRECTOR</span><h3>Joyce Jemwetich Kiptuiyei</h3><p>Organizational development, strategic support, and business relationships.</p><p class="leader-contact"><a href="tel:+254704116207">Director: +254 704 116 207</a></p></div></article>
-        </div>
-      </div>
-    </section>
+<section id="institutions">
+  <div class="wrap">
+    <div class="kicker">FOR SCHOOLS &amp; INSTITUTIONS</div>
+    <h2>Apply for access in three steps.</h2>
+    <p class="sub">Access is by approval. We only accept institutions that are genuine and meet our integrity checks.</p>
+    <div class="steps">
+      <div class="step"><h3>Submit your application</h3><p>Enter your institution's registration number, official email, contact person and phone number on our portal.</p></div>
+      <div class="step"><h3>We review it</h3><p>Our team checks your details. Your application shows as pending until it is approved or declined.</p></div>
+      <div class="step"><h3>Start issuing</h3><p>Once approved, your institution can sign documents and give out verifiable QR slips.</p></div>
+    </div>
+    <div class="apply" style="margin-top:34px">
+      <h2>Ready to apply?</h2>
+      <p>Have these ready before you start:</p>
+      <div class="need"><span>Registration number</span><span>Official email</span><span>Contact person</span><span>Phone number</span></div>
+      <a class="btn primary" href="https://lattice-assurance-bureau.onrender.com/" target="_blank" rel="noopener">Open the application portal ↗</a>
+      <p class="note">The portal may take up to a minute to wake the first time you open it. Please wait for it to load.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="contact section" id="contact">
-      <div class="contact-glow" aria-hidden="true"></div>
-      <div class="section-kicker">06 / START A CONVERSATION</div>
-      <div class="contact-layout">
-        <div><h2>Have a challenge<br>worth <em>solving?</em></h2><p>We welcome enquiries about potential projects, technical collaboration, research partnerships, and security-focused software development.</p></div>
-        <div class="contact-panel">
-          <span class="contact-label">BUSINESS ENQUIRIES</span>
-          <div class="contact-name">Lattice Assurance Bureau</div>
-          <div class="contact-row"><span>Telephone / WhatsApp</span><a href="https://wa.me/254714932609" target="_blank" rel="noopener noreferrer">+254 714 932 609 ↗</a></div>
-          <div class="contact-row"><span>CEO</span><b>Limo Chebon</b></div>
-          <div class="contact-row"><span>Director</span><b>Joyce Jemwetich Kiptuiyei</b></div>
-          <div class="contact-row"><span>Director direct line</span><a href="tel:+254704116207">+254 704 116 207</a></div>
-          <a class="button button-primary contact-button" href="https://wa.me/254714932609?text=Hello%20Lattice%20Assurance%20Bureau%2C%20I%27d%20like%20to%20discuss%20a%20potential%20project." target="_blank" rel="noopener noreferrer">Contact us on WhatsApp <span>↗</span></a>
-          <p class="privacy-note">Please do not send passwords, private keys, confidential files, or other sensitive information through this contact channel.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+<section>
+  <div class="wrap">
+    <div class="kicker">QUESTIONS</div>
+    <h2>Straight answers.</h2>
+    <div class="faq" style="margin-top:24px">
+      <details><summary>Does this prove a physical item, like a painting or a bag, is real?</summary><p>It proves that the issuing institution signed a record about the item and that the record hasn't been altered. Linking that record to the physical item depends on a tamper-evident tag or label applied by the issuer. We'll advise on this when you apply.</p></details>
+      <details><summary>Can a forger copy the QR code?</summary><p>A QR code can be copied, but a signed record can't be forged. Verification checks the signature and the issuer's name, so a fake with a copied QR will not match the item it's attached to.</p></details>
+      <details><summary>Do we need to buy or hold any cryptocurrency?</summary><p>No. Institutions don't buy or hold any token. We're planning a simple monthly subscription and will share details when your application is approved.</p></details>
+      <details><summary>Is LAB Vault audited or certified?</summary><p>Not yet. It's an early pilot and hasn't been independently audited. We say so openly and onboard institutions carefully.</p></details>
+      <details><summary>Who is accepted?</summary><p>Only institutions that pass our checks. We review every application before access is given, because your integrity protects everyone who relies on the verification.</p></details>
+    </div>
+  </div>
+</section>
 
-  <footer class="site-footer">
-    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="brand-name">LATTICE <b>ASSURANCE BUREAU</b></span></a>
-    <span>© <span id="year">2026</span> Lattice Assurance Bureau. All rights reserved.</span>
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">OUR PRINCIPLES</div>
+    <h2>How we work.</h2>
+    <div class="grid" style="margin-top:26px">
+      <div class="card"><h3>Evidence over hype</h3><p>We make claims that match what has actually been built and tested.</p></div>
+      <div class="card"><h3>Security by design</h3><p>Security is considered through design, implementation and review, not added at the end.</p></div>
+      <div class="card"><h3>Learning in the open</h3><p>We value documentation, careful testing, feedback and independent review.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="kicker">LEADERSHIP</div>
+    <h2>Built on ambition. Grounded in responsibility.</h2>
+    <p class="sub">We are building the foundations of a security-focused technology business, with an emphasis on learning, collaboration and responsible progress.</p>
+    <div class="people">
+      <div class="card person"><div class="av">LC</div><div><div class="role">CHIEF EXECUTIVE OFFICER</div><h3>Limo Chebon</h3><p>Company vision, strategic direction and product priorities.</p></div></div>
+      <div class="card person"><div class="av">JK</div><div><div class="role">DIRECTOR</div><h3>Joyce Jemwetich Kiptuiyei</h3><p>Organizational development, strategic support and business relationships.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap contact">
+    <div class="kicker">START A CONVERSATION</div>
+    <h2>Have a challenge worth solving?</h2>
+    <p class="sub">We welcome enquiries about projects, technical collaboration, research partnerships and security-focused software.</p>
+    <p><strong>Telephone / WhatsApp:</strong> <a href="https://wa.me/254714932609" style="color:var(--accent)">+254 714 932 609</a></p>
+    <p><strong>Director direct line:</strong> +254 704 116 207</p>
+    <div class="cta" style="margin:22px 0 14px">
+      <a class="btn primary" href="https://wa.me/254714932609?text=Hello%20Lattice%20Assurance%20Bureau%2C%20I%27d%20like%20to%20discuss%20a%20potential%20project." target="_blank" rel="noopener">Contact us on WhatsApp ↗</a>
+      <a class="btn ghost" href="https://lattice-assurance-bureau.onrender.com/" target="_blank" rel="noopener">Institution application ↗</a>
+    </div>
+    <p class="note">Please do not send passwords, private keys, confidential files or other sensitive information through this contact channel.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Lattice Assurance Bureau. All rights reserved.</span>
     <a href="#home">Back to top ↑</a>
-  </footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </div>
+</footer>
 </body>
 </html>
